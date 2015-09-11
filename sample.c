@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 void string_reverse1(char *string){
     int len = strlen(string);
     int left=0,right=len-1;
@@ -7,7 +8,8 @@ void string_reverse1(char *string){
         char temp = string[left];
         string[left]=string[right];
         string[right]=temp;
-
+        ++left;
+        --right;
     }
 }
 char *string_reverse2(const char *string){
@@ -21,10 +23,12 @@ char *string_reverse2(const char *string){
     return reverse_string;
 }
 int main(){
-    char *str1 = "this is test one";
+    char str1[] = "this is test one";
     char *str2 = NULL;
     string_reverse1(str1);
+    printf("str1 %s\n", str1);
     str2 = string_reverse2(str1);
+    printf("str2 %s\n", str2);
     free(str2);
     return 0;
 }
